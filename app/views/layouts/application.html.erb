@@ -23,16 +23,6 @@
 					<%= link_to "Login", :login %>
 				<% end %>
 			</nav>
-
-			<div class="error_explanation">
-				<% if flash.any? %>
-				<% flash.each do |key, value| %>
-				<h3 class="<%= key %>">
-					<%= value %>
-				</h3>
-				<% end %>
-				<% end %>
-			</div>
 		</header>
 
 		<% flash.each do |key, message| %>
