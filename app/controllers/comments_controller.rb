@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
   def create
     @project = Project.find(params[:project_id])
     @comment = @project.commments.create(comment_params)
@@ -36,4 +37,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.required(:comment).permit(:input)
   end
+
 end
