@@ -9,6 +9,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @pledge = Pledge.where(project_id: params[:id])
+    @owner = @project
   end
 
   def new
@@ -18,9 +20,11 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.create(project_params)
+    @project.owner = current_user
+    
       if @project.save
       flash[:notice] = "Project Created!"
-      redirect_to projects_path
+      redirect_to projects_url
     else
       flash.now[:error] = "Sorry try again!"
       render :new

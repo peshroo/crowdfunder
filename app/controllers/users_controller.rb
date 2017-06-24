@@ -8,11 +8,15 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'Welcome!'
       auto_login(@user)
-      redirect_to root_path
+      redirect_to projects_url
     else
       flash.now[:error] = 'Oops! Try again!!'
       render 'new'
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   private

@@ -7,14 +7,12 @@ class Project < ActiveRecord::Base
 
   validates :title, :description, :goal, :start_date, :end_date, presence: true
 
-  validates :goal, numericality: {greater_than_or_equal_to: 0}
-
-
+  validate :goal_must_be_above_0
   validate :project_start_date
   validate :project_end_date
 
   def project_start_date
-    if start_date < Date.today
+    if start_date < Time.current
       errors.add(:start_date, "Start date must be in future")
     end
   end
@@ -23,6 +21,11 @@ class Project < ActiveRecord::Base
     if end_date < start_date
       errors.add(:end_date, "End date must be after project start date")
     end
+  end
+
+  def goal_must_be_above_0
+    if goal < 0
+      errors.add(:goal, "Must be above 0!")
   end
 
 
