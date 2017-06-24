@@ -1,33 +1,44 @@
 <%= form_for(@project, html: {multipart: true}) do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+<% if @project.errors.any? %>
+<div id="error_explanation">
+	<h3>There are <%= @project.errors.count %> issues, please try again:</h3>
+		<ol>
+		<% @project.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</ol>
+	</div>
+<% end %>
 
-  <div>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
+	<div>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
 
-  <div>
-    <%= f.label :goal %>
-    <%= f.number_field :goal %>
-  </div>
+	<div>
+		<%= f.label :description %>
+		<%= f.text_field :description %>
+	</div>
 
-  <div>
-    <%= f.label :image %>
-    <%= f.text_field :image %>
-  </div>
+	<div>
+		<%= f.label :goal %>
+		<%= f.number_field :goal %>
+	</div>
 
-  <div>
-    <%= f.label :start_date %>
-    <%= f.datetime_select :start_date %>
-  </div>
+	<div>
+		<%= f.label :image %>
+		<%= f.text_field :image %>
+	</div>
 
-  <div>
-    <%= f.label :end_date %>
-    <%= f.datetime_select :end_date %>
-  </div>
+	<div>
+		<%= f.label :start_date %>
+		<%= f.datetime_select :start_date %>
+	</div>
 
-  <%= f.submit %>
+	<div>
+		<%= f.label :end_date %>
+		<%= f.datetime_select :end_date %>
+	</div>
+
+	<%= f.submit %>
 <% end %>

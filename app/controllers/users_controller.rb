@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
 
   def show
     @user = User.find(params[:id])
