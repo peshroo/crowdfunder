@@ -1,5 +1,13 @@
 <%= link_to "New Project", new_project_path %>
 
+<div>
+	<%= form_tag("/search", method: "get") do %>
+	 <%= label_tag(:projects, "Search For:") %>
+	 <%= text_area_tag(:name) %>
+	 <%= submit_tag("Search") %>
+	<% end %>
+</div>
+
 <% @projects.each do |project| %>
 	<article class="project">
 		<%= link_to project, class: 'project-link' do %>

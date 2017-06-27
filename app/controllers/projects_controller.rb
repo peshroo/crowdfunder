@@ -1,7 +1,6 @@
 class ProjectsController < ApplicationController
 	before_action :require_login, only: [:new, :create]
 
-
 	def index
 		@projects = Project.all
 		@projects = @projects.order(:end_date)
@@ -31,6 +30,11 @@ class ProjectsController < ApplicationController
 			render :new
 		end
 	end
+
+	def search
+		 @projects = Project.where('title LIKE ? OR description LIKE ?', "%#{params[:title]}%","%#{params[:description]}")
+		 @projects = @projects.order(:title).page(params[:page])
+	 end
 
 # 	def edit
 # 		@project = Project.find(params[:id])

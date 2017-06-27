@@ -1,0 +1,9 @@
+<% if @projects.any? %>
+		<p>The result is</p>
+		<% @projects.each do |project| %>
+		<%= render 'single_project', project: project %>
+		<% end %>
+
+ <% else %>
+		<p>No result found</p>
+ <% end %>

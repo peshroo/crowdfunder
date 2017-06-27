@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 	root "projects#index"
 
+	get '/search' => 'projects#search'
 	get 'login' => 'user_sessions#new', :as => :login
 	delete 'logout' => 'user_sessions#destroy', :as => :logout
 
