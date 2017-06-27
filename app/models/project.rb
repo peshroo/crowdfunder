@@ -1,4 +1,7 @@
 class Project < ActiveRecord::Base
+
+	mount_uploader :image, ProjectImageUploader
+	
 	has_many :rewards
 	has_many :pledges
 	has_many :backers, through: :pledges, source: :user

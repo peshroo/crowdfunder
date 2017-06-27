@@ -10,10 +10,24 @@
 	font-size: 1.5rem;
 }
 
-a {
+h1 {
 		text-decoration: none;
+		display: inline-block;
+}
+
+a {
+	display: block
+}
+
+.site.nav {
+	display: block;
 }
 
 header.site-header {
 		background-color: lightblue;
+}
+
+article.project {
+		width: 47%;
+		display: inline-block;
 }
