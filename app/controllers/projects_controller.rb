@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 	def show
 		@project = Project.find(params[:id])
 		@pledge = Pledge.where(project_id: params[:id])
-		@owner = @project
+		@owner = @project.owner
 	end
 
 	def new

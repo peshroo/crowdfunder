@@ -1,7 +1,8 @@
 <h1><%= @project.title %></h1>
+<h2>Project owner: <%= "#{@owner.first_name} #{@owner.last_name}" %></h2>
 
 <% if @project.image.present? %>
-  <%= image_tag @project.image %>
+	<%= image_tag @project.image %>
 <% end %>
 
 <p><%= @project.description %></p>
@@ -10,20 +11,20 @@
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
 
 <%= form_for [@project, Pledge.new] do |f| %>
-  <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
-  <%= f.submit "Pledge" %>
+	<%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
+	<%= f.submit "Pledge" %>
 <% end %>
 
 <h2>Rewards</h2>
 <% @project.rewards.each do |reward| %>
-  <p><%= number_to_currency(reward.dollar_amount) %></p>
-  <p><%= reward.description %></p>
+	<p><%= number_to_currency(reward.dollar_amount) %></p>
+	<p><%= reward.description %></p>
 
-  <p>
-    <small>
-      <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
-    </small>
-  </p>
+	<p>
+		<small>
+			<%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
+		</small>
+	</p>
 <% end %>
 
 <%= link_to "Add new reward", new_project_reward_path(@project) %>
@@ -31,14 +32,14 @@
 <%= render 'form', comment: @comment %>
 
 <div class="Comments">
-  <ol>
-    <% @project.comments.each do |comment| %>
-      <li>
-        <%=link_to("Edit", edit_project_comment_path(@project, comment)) %> |
-        <%=link_to("Delete", project_comment_path(@project, comment), method: :delete, data: {confirm: "Are you sure you want to delete?"}) %>
-        <p><%= comment.created_at %></p>
-        <p><%= comment.input %></p>
-      </li>
-      <% end %>
-  </ol>
+	<ol>
+		<% @project.comments.each do |comment| %>
+			<li>
+				<%=link_to("Edit", edit_project_comment_path(@project, comment)) %> |
+				<%=link_to("Delete", project_comment_path(@project, comment), method: :delete, data: {confirm: "Are you sure you want to delete?"}) %>
+				<p><%= comment.created_at %></p>
+				<p><%= comment.input %></p>
+			</li>
+			<% end %>
+	</ol>
 </div>
